@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beanio xmlns="http://www.beanio.org/2012/03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.beanio.org/2012/03 http://www.beanio.org/2012/03/mapping.xsd">
+
+	<stream name="transactions" format="delimited">
+	
+		<parser>
+			<property name="delimiter" value="|" />
+		</parser>
+
+		<record name="header" minOccurs="1" maxOccurs="1" class="com.assessment.maybank.beanio.TransactionBeanIO">
+			<field name="ACCOUNT_NUMBER" ignore="true" literal="ACCOUNT_NUMBER"/>
+			<field name="TRX_AMOUNT"  ignore="true" literal="TRX_AMOUNT"/>
+			<field name="DESCRIPTION" ignore="true" literal="DESCRIPTION"/>
+			<field name="TRX_DATE"   ignore="true" literal="TRX_DATE"/>
+			<field name="TRX_TIME" ignore="true" literal="TRX_TIME"/>
+			<field name="CUSTOMER_ID"   ignore="true" literal="CUSTOMER_ID"/>
+		</record>
+		
+		<record name="transaction" class="com.assessment.maybank.beanio.TransactionBeanIO">
+		
+            <field name="accountNumber" type="Long"/>
+            <field name="trxAmount" type="BigDecimal" />
+            <field name="description" type="String"/>
+            <field name="trxDate" type="date" format="yyyy-MM-dd" />
+            <field name="trxTime" type="time" format="HH:mm:ss" />
+            <field name="customerNumber" type="Long" />
+			
+		</record>
+		
+	</stream>
+</beanio>

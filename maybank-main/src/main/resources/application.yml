@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mb_db
+    username: mb_db
+    password: mb_db
+    testWhileIdle: true
+    validationQuery: SELECT 1
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  batch:
+    job:
+      enabled: false
+
+assessment:
+  auth:
+    jwt:
+        secret: my_secret_key
+        expiration: 60000
+    users:
+      username: user
+      password: password
+  init:
+    datasql:
+      path: classpath:data.sql
+  batch:
+    beanio:
+      path: beanio/transaction.xml
+    datasource:
+      path: classpath:dataSource/dataSource.txt
